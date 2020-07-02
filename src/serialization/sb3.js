@@ -988,6 +988,10 @@ const parseScratchObject = function (object, runtime, extensions, zip, assets) {
             );
             if (isCloud) runtime.addCloudVariable();
             newVariable.value = variable[1];
+            // null is used elsewhere to mean that variable does not exist so variable can't have value of null
+            if (newVariable.value === null) {
+                newVariable.value = '';
+            }
             target.variables[newVariable.id] = newVariable;
         }
     }
